@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+# coding=utf-8
+# 如果某个项集是频繁的，那么它的所有子集也是频繁的。
+
+
+def loadDataSet():  #加载数据
+    return [[1, 3, 4], [2, 3, 5], [1, 2, 3, 5], [2, 5]]
+
+
+def createC1(dataSet):  #创建第一个候选列表
+    C1 = []
+    for transaction in dataSet:
+        for item in transaction:
+            if not [item] in C1:
+                C1.append([item])
+    C1.sort()
+    return map(frozenset, C1)
+
+
+def scanD(D, Ck, minSupport):   # 数据集D，候选集合Ck，最小支持度minSupport
+    ssCnt = {}
+    for tid in D:
+        for can in Ck:
+            if can.issubset(tid):
+                if not ssCnt.has_key(can): ssCnt[can]=1
+                else: ssCnt[can]+=1
+    numItems = float(len(D))
+    retList = []
+    supportData = {}
+    for key in ssCnt:
+        support = ssCnt[key]/numItems
+        if support >= minSupport:
+            retList.insert(0,key)
+        supportData[key]= support
+    return retList, supportData
