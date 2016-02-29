@@ -36,10 +36,21 @@ def drawPca(dataMat, reconMat):
     plt.show()
 
 
-if __name__ == '__main__':
-    import pca
-    dataMat = pca.loadDataSet('testSet.txt')
-    lowDMat, reconMat = pca.pca(dataMat, 1)
-    print lowDMat.shape
-    drawPca(dataMat, reconMat)
+def replaceNanWithMean():
+    datMat = loadDataSet('secom.data', ' ')
+    numFeat = np.shape(datMat)[1]
+    for i in range(numFeat):
+        meanVal = np.mean(datMat[np.nonzero(~np.isnan(datMat[:, i].A))[0], i])
+        datMat[np.nonzero(np.isnan(datMat[:, i].A))[0], i] = meanVal
+    return datMat
 
+if __name__ == '__main__':
+    # part 1
+    # import pca
+    # dataMat = pca.loadDataSet('testSet.txt')
+    # lowDMat, reconMat = pca.pca(dataMat, 1)
+    # print lowDMat.shape
+    # drawPca(dataMat, reconMat)
+
+    # part 2
+    pass
