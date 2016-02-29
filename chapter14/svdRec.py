@@ -86,3 +86,32 @@ def svdEst(dataMat, user, simMeas, item):
         ratSimTotal += similarity*userRating
     if simTotal==0: return 0
     else: return ratSimTotal/simTotal
+
+#基于SVD的图像压缩
+def printMat(inMat, thresh=0.8):
+    for i in range(32):
+        for j in range(32):
+            if float(inMat[i,j]) > thresh:
+                print 1,
+            else:
+                print 0,
+        print ''
+
+
+def imgCompress(numSV=3, thresh=0.8):
+    my1 = []
+    for line in open('0_5.txt').readlines():
+        newRow = []
+        for i in range(32):
+            newRow.append(int(line[i]))
+        my1.append(newRow)
+    myMat = mat(my1)
+    print "------original matrix------"
+    printMat(myMat, thresh)
+    U, Sigma, VT = la.svd(myMat)
+    SigRecon = mat(zeros((numSV, numSV)))
+    for k in range(numSV):
+        SigRecon[k,k] = Sigma[k]
+    reconMat = U[:, :numSV]*SigRecon*VT[:numSV, :]
+    print "--------Reconstructed matrix using %d singular values------"%numSV
+    printMat(reconMat, thresh)
