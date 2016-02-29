@@ -115,3 +115,6 @@ def imgCompress(numSV=3, thresh=0.8):
     reconMat = U[:, :numSV]*SigRecon*VT[:numSV, :]
     print "--------Reconstructed matrix using %d singular values------"%numSV
     printMat(reconMat, thresh)
+
+if __name__ == '__main__':
+    print imgCompress(2)
