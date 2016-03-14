@@ -3,7 +3,7 @@
 
 + chapter2: k-近邻算法
 + chapter3: [决策树](https://github.com/sherlockzoom/MachineLearningInAction/tree/master/chapter3)
-+ chapter4： 基于概率论的分类方法：朴素贝叶斯
++ chapter4： [基于概率论的分类方法：朴素贝叶斯](https://github.com/sherlockzoom/MachineLearningInAction/tree/master/chapter4)
 + chapter5: Logistic 回归
 + chapter6： 支持向量机
 + chapter7： 利用AdaBoost元算法提高分类性能
