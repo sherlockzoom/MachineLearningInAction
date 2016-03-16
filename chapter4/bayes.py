@@ -107,11 +107,19 @@ def spamTest():
     trainMat = []; trainClasses = []
     for docIndex in trainingSet:
         trainMat.append(setOfWords2Vec(vocabList, docList[docIndex]))
-        ## never end...
+        trainClasses.append(classList[docIndex])
+    p0V, p1V,pSpam = trainNB0(array(trainMat), array(trainClasses))
+    errorCount = 0
+    for docIndex in testSet:
+        wordVector = setOfWords2Vec(vocabList, docList[docIndex])
+        if classifyNB(array(wordVector), p0V, p1V, pSpam) != classList[docIndex]:
+            errorCount += 1
+    print 'the error rate is:', float(errorCount)/len(testSet)
+
 
 
 
 if __name__ == '__main__':
-    testingNB()
+    spamTest()
 
 
