@@ -2,7 +2,7 @@
 # coding=utf-8
 
 # 1. 加载数据 data: -0.017612 	14.053064	0
-from numpy import mat, shape, ones, exp, array, arange
+from numpy import mat, shape, ones, exp, arange, array
 
 
 def loadDataSet():
@@ -20,7 +20,7 @@ def sigmoid(inX):
     return 1.0/(1+exp(-inX))
 
 
-# 3 梯度计算
+# 3 梯度计算:梯度上升算法
 def gradAscent(dataMatIn, classLabels):
     dataMatrix = mat(dataMatIn)
     labelMat = mat(classLabels).transpose()
@@ -32,6 +32,17 @@ def gradAscent(dataMatIn, classLabels):
         h = sigmoid(dataMatrix*weights)
         error = labelMat - h
         weights = weights + alpha*dataMatrix.transpose()*error
+    return weights
+
+# 3 随机梯度上升
+def stocGradAscent0(dataMatIn, classLabels):
+    m,n = shape(dataMatIn)
+    alpha = 0.01
+    weights = ones(n)
+    for i in range(m):
+        h = sigmoid(sum(dataMatIn[i]*weights))
+        error = classLabels[i]-h
+        weights = weights + alpha*error*dataMatIn[i]
     return weights
 
 # 4 plot
@@ -62,5 +73,10 @@ def plotBestFit(wei):
 if __name__ == '__main__':
     dataArr, labelMat = loadDataSet()
     wei = gradAscent(dataArr, labelMat)
+    print type(dataArr)
+
+    wei1 = stocGradAscent0(array(dataArr), labelMat)
     print wei
     plotBestFit(wei)
+    print wei1
+    plotBestFit(wei1)
