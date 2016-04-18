@@ -13,6 +13,6 @@
      [-0.6168482 ]]
 
 
-![]('./logRegression.png')
+![](logRegression.png)
 
 
