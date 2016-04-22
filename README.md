@@ -1,6 +1,11 @@
 # MachineLearningInAction
-《机器学习实战》算法实践
+主要包括《机器学习实战》和 sklearn入门教程。sklearn相关教程使用ipython notebook编写，便于代码复用和结果复现。
 
+> github上加载ipynb很慢，很可能加载不出来，请访问[在线jupyter访问地址](http://nbviewer.jupyter.org/github/sherlockzoom/MachineLearningInAction/tree/master/)
+
+
+
+## 《机器学习实战》目录
 + chapter2: k-近邻算法
 + chapter3: [决策树](https://github.com/sherlockzoom/MachineLearningInAction/tree/master/chapter3)
 + chapter4： [基于概率论的分类方法：朴素贝叶斯](https://github.com/sherlockzoom/MachineLearningInAction/tree/master/chapter4)
