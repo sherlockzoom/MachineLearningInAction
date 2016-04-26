@@ -1,7 +1,7 @@
 # MachineLearningInAction
 主要包括《机器学习实战》和 sklearn入门教程。sklearn相关教程使用ipython notebook编写，便于代码复用和结果复现。
 
-> github上加载ipynb很慢，很可能加载不出来，请访问[在线jupyter访问地址](http://nbviewer.jupyter.org/github/sherlockzoom/MachineLearningInAction/tree/master/)
+> github上加载ipynb很慢，很可能加载不出来，请访问[在线jupyter访问地址](http://nbviewer.jupyter.org/github/sherlockzoom/MachineLearningInAction/tree/master/sklearn-demo-jupyter/)
 
 
 
