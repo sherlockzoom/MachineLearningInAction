@@ -6,7 +6,7 @@
 
 
 ## 《机器学习实战》目录
-+ chapter2: k-近邻算法
++ chapter2: [k-近邻算法](https://github.com/sherlockzoom/MachineLearningInAction/tree/master/chapter2)
 + chapter3: [决策树](https://github.com/sherlockzoom/MachineLearningInAction/tree/master/chapter3)
 + chapter4： [基于概率论的分类方法：朴素贝叶斯](https://github.com/sherlockzoom/MachineLearningInAction/tree/master/chapter4)
 + chapter5: [Logistic 回归](https://github.com/sherlockzoom/MachineLearningInAction/tree/master/chapter5)
