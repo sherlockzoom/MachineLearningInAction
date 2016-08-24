@@ -58,6 +58,26 @@ def autoNorm(dataSet):
 	normat = normat/tile(ranges, (m,1))
 	return normat, ranges, minVal
 
+from sklearn.neighbors import KNeighborsClassifier
+
+def sk_knn_test():
+	hoRatio = 0.10
+	datingDataMat, datingLabels = file2matrix('datingTestSet2.txt')
+	normat, ranges, minval = autoNorm(datingDataMat)
+	m = normat.shape[0]
+	numTestVecs = int(m * hoRatio)
+	errorCount = 0
+	### sklearn
+	clf = KNeighborsClassifier(n_neighbors=3)
+	clf.fit(normat[numTestVecs:m, :], datingLabels[numTestVecs:m])
+	###
+	for i in range(numTestVecs):
+		# clf_result = classify0(normat[i, :], normat[numTestVecs:m, :], datingLabels[numTestVecs:m], 3)
+		clf_result = clf.predict(normat[i, :])
+		print "the classifier came back with : %d, the real answer is : %d" % (clf_result, datingLabels[i])
+		if clf_result != datingLabels[i]:
+			errorCount += 1.0
+	print "the total error rate is : %f" % (errorCount / numTestVecs)
 
 # 分类过程
 def datingClassTest():
@@ -116,12 +136,18 @@ def handwritingClassTest():
 	testFileList = listdir('testDigits')
 	errorCount = 0.0
 	mTest = len(testFileList)
+
+	clf = KNeighborsClassifier(n_neighbors=3)
+	clf.fit(trainingMat, hwLabels)
+
+
 	for i in range(mTest):
 		fileNameStr = testFileList[i]
 		fileStr = fileNameStr.split('.')[0]
 		classNumber = int(fileStr.split('_')[0])
 		vectorUnderTest = img2vector('testDigits/%s'%fileNameStr)
-		clf_result = classify0(vectorUnderTest, trainingMat, hwLabels, 3)
+		# clf_result = classify0(vectorUnderTest, trainingMat, hwLabels, 3)
+		clf_result = clf.predict(vectorUnderTest)
 		print "分类器返回的是：%d, 真实的结果是: %d "%(clf_result, classNumber)
 		if clf_result!=classNumber:
 			errorCount += 1
@@ -134,3 +160,4 @@ if __name__=='__main__':
 	# datingClassTest()
 	# classifyPerson()
 	handwritingClassTest()
+	# sk_knn_test()
